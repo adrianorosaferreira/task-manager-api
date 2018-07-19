@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+    # before_action :authenticate_with_token!, only: [ :create, :destroy ]
     respond_to :json
 
     def show
