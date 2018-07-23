@@ -11,7 +11,7 @@ RSpec.describe 'Users API', type: :request do
         }
     end
 
-    before { host! 'api.taskmanager.dev' }
+    before { host! 'api.task-manager.test' }
 
     describe 'GET users/:id' do
         before do
