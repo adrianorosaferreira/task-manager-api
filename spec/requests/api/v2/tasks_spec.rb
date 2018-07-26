@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Task API' do
-    before { host! 'api.task-manager.test' }
-
+    
     let!(:user) { create(:user) }
+    let!(:auth_data) { user.create_new_auth_token }
     let(:headers) do
         {
             'Content-Type' => Mime[:json].to_s,
             'Accept' => 'application/vnd.taskmanager.v2',
-            'Authorization' => user.auth_token
+            'access-token' => auth_data['access-token'],
+            'uid' => auth_data['uid'],
+            'client' => auth_data['client']
         }
     end
+
+    before { host! 'api.taskmanager.test' }
 
     describe 'GET /tasks' do
         context 'When no filter param is sent' do
